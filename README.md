@@ -57,7 +57,3 @@ Published in IJIRCCE (2024).
 * Real-time web deployment
 * Mobile application support
 * Improved dataset diversity
-
-## Author
-
-Pranita Kute
