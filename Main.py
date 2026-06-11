@@ -29,7 +29,7 @@ st.write(
 )
 
 
-@st.cache
+@st.cache_data
 def screen_load():
     screening = pd.read_csv("DataSet/Screening/data.csv")
     screening.drop("Unnamed: 0", axis=1, inplace=True)
@@ -76,7 +76,7 @@ def to_category(options, chosen):
 # -------------------- Image ---------------------#
 
 
-@st.cache
+@st.cache_data
 def load_image():
     dir = "./DataSet/Images/Autistic/train/"
     ori_label = []
@@ -86,7 +86,7 @@ def load_image():
         ori_label.append(1)
         new_img = Image.open(images)
         ori_imgs.append(
-            ImageOps.fit(new_img, (64, 64), Image.ANTIALIAS).convert("RGB")
+            ImageOps.fit(new_img, (64, 64), Image.Resampling.LANCZOS).convert("RGB")
         )
 
     dir = "./DataSet/Images/Non_Autistic/train/"
@@ -95,7 +95,7 @@ def load_image():
         ori_label.append(0)
         new_img = Image.open(images)
         ori_imgs.append(
-            ImageOps.fit(new_img, (64, 64), Image.ANTIALIAS).convert("RGB")
+            ImageOps.fit(new_img, (64, 64), method=Image.Resampling.LANCZOS).convert("RGB")
         )
 
     imgs = np.array([np.array(im) for im in ori_imgs])
@@ -111,7 +111,7 @@ def load_image():
         output.append(1)
         new_img = Image.open(images)
         ti.append(
-            ImageOps.fit(new_img, (64, 64), Image.ANTIALIAS).convert("RGB")
+            ImageOps.fit(new_img, (64, 64), method=Image.Resampling.LANCZOS).convert("RGB")
         )
 
     dir = "./DataSet/Images/Non_Autistic/test/"
@@ -120,7 +120,7 @@ def load_image():
         output.append(0)
         new_img = Image.open(images)
         ti.append(
-            ImageOps.fit(new_img, (64, 64), Image.ANTIALIAS).convert("RGB")
+            ImageOps.fit(new_img, (64, 64), method=Image.Resampling.LANCZOS).convert("RGB")
         )
 
     ti = np.array([np.array(im) for im in ti])
@@ -188,7 +188,7 @@ with st.form("survey"):
         ri = []
         new_img = Image.open(picture)
         ri.append(
-            ImageOps.fit(new_img, (64, 64), Image.ANTIALIAS).convert("RGB")
+            ImageOps.fit(new_img, (64, 64), method=Image.Resampling.LANCZOS).convert("RGB")
         )
         ri = np.array([np.array(im) for im in ri])
         ri = np.array([cv2.resize(im, (32, 32)).flatten() for im in ri])

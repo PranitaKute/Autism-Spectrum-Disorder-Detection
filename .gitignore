@@ -1,3 +1,9 @@
 .venv
 **/__pycache__/
 tmp
+myenv/
+__pycache__/
+.vscode/
+.dist/
+*.pyc
+.ipynb_checkpoints/
